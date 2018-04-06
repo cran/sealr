@@ -1,0 +1,99 @@
+---
+title: "1. Sealing the R Objects Test and Assert Conditions"
+author: "Shinya Uryu"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true
+vignette: >
+  %\VignetteIndexEntry{1. Sealing the R Objects Test and Assert Conditions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Motivation
+
+Data is not always what you think. Someone may change a single value or the data type may be different depending on the specification the API. We need to be aware of these data changes as soon as possible (*It is hard to review from the final result!*).
+
+You can use tests and asserts to check data behavior. Although the testthat package is originally used for unit test of R package, this framework is wide and applicable to any *R* object. On the other hand, it is time-consuming task to enter the state of existing objects, and there is a possibility of mistakes as well.
+
+The goal of **sealr** is to reduce the burden of writing unit tests and assertion that record the state of objects. Applying a function of sealr to the target object outputs the test code that record the current state.
+
+## How to use
+
+1. (As usual) Create an *R* object.
+2. Execute the function of sealr (`design_*()` or `transcribe()`) against a object whose state is to be record.
+    - `design_*()`... The preamble is fixed and consists of the function name bearing test items (eg. `design_class()`, `design_length()`, etc.).
+    - `transcribe()`... Sets of `design_*()`.It is a generic function and returns combinations according to the class of the object.
+
+```{r, eval = TRUE, echo = TRUE}
+library(sealr)
+library(testthat)
+```
+
+```{r}
+x <- seq(1, 9, by = 2)
+
+design_class(x, seal = TRUE)
+
+design_range(x, seal = TRUE)
+```
+
+You can copy the output, but if you activate the *clip* argument, the output result will be in a copied state, pasting that value is too easy. This feature depends on the [clipr](https://github.com/mdlincoln/clipr) package.
+
+```{r, eval = FALSE, echo = TRUE}
+design_class(x, seal = TRUE, clip = TRUE)
+expect_is(
+  x,
+  "numeric"
+)
+```
+
+`transcribe()` is a generic function that produces output according to the class of the object. Currently it suports to 8 classes, but we plan to add various classes in future upgrades.
+
+```{r, warning = FALSE}
+transcribe(iris)
+
+my_data <- list(A = letters, B = trees)
+
+transcribe(my_data, load_testthat = FALSE, ts = FALSE)
+```
+
+## Details
+
+### Options
+
+Both `design_*()` and `transcribe()` have the following common arguments (Ref. `?seal`).
+
+- load_testthat: include `library(testthat)` when *TRUE*
+- clip: If *TRUE* will overwrite the system clipboard. When clipr is not available, The clip arguments is forcibly *FALSE*.
+- ts: include comments that timestamp?
+- mask_seal: Whether to comment out after executing the function. Default FALSE. This option is effective only when using RStudio.
+
+### APIs
+
+#### design_* function
+
+- `design_class()`
+- `design_length()`
+
+#### transcribe function
+
+Suports to 8 classes. Default test of the class. 
+
+- numeric
+- character
+- factor
+- Date
+- data.frame
+- list
+- matrix
+- table
