@@ -1,6 +1,6 @@
 Package: sealr
 Title: Sealing the R Objects Test and Assert Conditions
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person(given = "Shinya", family = "Uryu", email = "suika1127@gmail.com", role  = c("aut", "cre"), comment = c(ORCID = "0000-0002-0493-6186"))
     )
@@ -16,7 +16,7 @@ Imports: clipr (>= 0.4.0), clisymbols (>= 1.2.0), digest (>= 0.6.15),
         0.2.4), rlang (>= 0.2.0), rstudioapi (>= 0.7), styler (>=
         1.0.0), tibble (>= 1.4.2), tidyr (>= 0.8.0)
 Suggests: covr (>= 3.0.1), testthat (>= 2.0.0), knitr (>= 1.20),
-        rmarkdown (>= 1.9)
+        rmarkdown (>= 1.9), withr (>= 2.1.2)
 ByteCompile: true
 Encoding: UTF-8
 Language: en-US
@@ -24,8 +24,8 @@ LazyData: true
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2018-04-05 19:41:13 UTC; rstudio
+Packaged: 2018-06-30 09:41:00 UTC; rstudio
 Author: Shinya Uryu [aut, cre] (<https://orcid.org/0000-0002-0493-6186>)
 Maintainer: Shinya Uryu <suika1127@gmail.com>
 Repository: CRAN
-Date/Publication: 2018-04-06 12:11:57 UTC
+Date/Publication: 2018-06-30 10:42:54 UTC

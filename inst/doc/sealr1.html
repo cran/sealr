@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shinya Uryu" />
 
-<meta name="date" content="2018-04-05" />
+<meta name="date" content="2018-06-30" />
 
 <title></title>
 
@@ -72,7 +72,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Sealing the R Objects Test and Assert Conditions</li>
 </ol></h1>
 <h4 class="author"><em>Shinya Uryu</em></h4>
-<h4 class="date"><em>2018-04-05</em></h4>
+<h4 class="date"><em>2018-06-30</em></h4>
 
 
 <div id="TOC">
@@ -108,7 +108,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <span class="kw">design_class</span>(x, <span class="dt">seal =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; Warning: clipr not available. check clipr configuration.</span>
-<span class="co">#&gt; #' ℹ: Labeling on 2018-04-05 by the sealr package (v0.1.0)</span>
+<span class="co">#&gt; #' ℹ: Labeling on 2018-06-30 by the sealr package (v0.1.1)</span>
 <span class="co">#&gt; expect_is(</span>
 <span class="co">#&gt;   x,</span>
 <span class="co">#&gt;   &quot;numeric&quot;</span>
@@ -116,7 +116,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <span class="kw">design_range</span>(x, <span class="dt">seal =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; Warning: clipr not available. check clipr configuration.</span>
-<span class="co">#&gt; #' ℹ: Labeling on 2018-04-05 by the sealr package (v0.1.0)</span>
+<span class="co">#&gt; #' ℹ: Labeling on 2018-06-30 by the sealr package (v0.1.1)</span>
 <span class="co">#&gt; expect_equal(</span>
 <span class="co">#&gt;   range(x, na.rm = TRUE),</span>
 <span class="co">#&gt;   c(1, 9)</span>
@@ -129,7 +129,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 )</code></pre></div>
 <p><code>transcribe()</code> is a generic function that produces output according to the class of the object. Currently it suports to 8 classes, but we plan to add various classes in future upgrades.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">transcribe</span>(iris)
-<span class="co">#&gt; #' ℹ: Labeling on 2018-04-05 by the sealr package (v0.1.0)</span>
+<span class="co">#&gt; #' ℹ: Labeling on 2018-06-30 by the sealr package (v0.1.1)</span>
 <span class="co">#&gt; test_that(&quot;check iris statement&quot;, {</span>
 <span class="co">#&gt;   expect_is(</span>
 <span class="co">#&gt;     iris,</span>

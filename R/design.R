@@ -249,9 +249,8 @@ design_class <- function(x, environment = NULL, ...) {
     env <- environment
   }
 
-  if (isS4(glue::evaluate(glue::glue("{x}",
-                                     x = get(".obj", e)),
-                          envir = env)) == TRUE) {
+  if (isS4(eval(parse(text = glue::glue("{x}",
+                                        x = get(".obj", e))), envir = env)) == TRUE) {
     res <- as.character(glue::glue(
       glue::glue("expect_s4_class(
                  {x},
@@ -277,14 +276,14 @@ design_class <- function(x, environment = NULL, ...) {
 #' @noRd
 .design_df_details <- function(var) {
 
-  obj <- glue::evaluate(var, .GlobalEnv)
+  obj <- eval(parse(text = var), envir = .GlobalEnv)
 
   test_common <- glue::glue(
     "expect_equal(
     sum(is.na({x})),\n",
     rlang::expr_text(
       sum(is.na(
-        glue::evaluate(var, .GlobalEnv)))),
+        eval(parse(text = var), envir = .GlobalEnv)))),
     ")",
     x = rlang::sym(var)
   )
@@ -295,7 +294,7 @@ design_class <- function(x, environment = NULL, ...) {
       range({x}, na.rm = TRUE),\n",
       rlang::expr_text(
         range(
-          glue::evaluate(var, .GlobalEnv), na.rm = TRUE)),
+          eval(parse(text = var), envir = .GlobalEnv), na.rm = TRUE)),
       ")",
       x = rlang::sym(var)
     )
@@ -305,7 +304,7 @@ design_class <- function(x, environment = NULL, ...) {
       {x},\n",
       rlang::expr_text(
         levels(
-          glue::evaluate(var, .GlobalEnv))),
+          eval(parse(text = var), envir = .GlobalEnv))),
       ")",
       x = rlang::sym(var)
     )
@@ -315,7 +314,7 @@ design_class <- function(x, environment = NULL, ...) {
       length(unique({x})),\n",
       rlang::expr_text(
         length(unique(
-          glue::evaluate(var, .GlobalEnv)))),
+          eval(parse(text = var), envir = .GlobalEnv)))),
       ")",
       x = rlang::sym(var)
     )
@@ -325,7 +324,7 @@ design_class <- function(x, environment = NULL, ...) {
       {x},\n",
       rlang::expr_text(
         length(
-          glue::evaluate(var, .GlobalEnv))),
+          eval(parse(text = var), envir = .GlobalEnv))),
       ")",
       x = rlang::sym(var)
     )
